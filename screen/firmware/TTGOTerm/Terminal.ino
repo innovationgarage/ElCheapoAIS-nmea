@@ -158,6 +158,10 @@ void terminal_loop()
   {
     char c = Serial.read();
 
+Serial.print("initial.CHAR"); Serial.print((int)c); Serial.print("\n");
+
+    
+
     switch (c)
     {
       case ESC:
