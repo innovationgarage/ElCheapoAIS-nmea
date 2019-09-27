@@ -7,13 +7,19 @@
 #define BTN_MID 14
 #define BTN_RIGHT 13
 
-#define LCD_CLK 5
-#define LCD_SDA 4
 #define LCD_FPS_TARGET 60
 
 #define SERIAL_BAUDS 9600
 
+#if defined(__AVR__)
+// Arduboy
+U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 12, /* dc=*/ 4, /* reset=*/ 6);  // Arduboy (Production, Kickstarter Edition)
+#elif defined(ESP8266)
+// TTGO SH1106 ESP8266 screen
+#define LCD_CLK 5
+#define LCD_SDA 4
 U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+#endif
 
 // Font from https://github.com/olikraus/u8g2/wiki/fntlistall
 #define lcd_font u8g2_font_4x6_mf
@@ -36,7 +42,7 @@ typedef struct {
   int lower;
 } ScrollRegion;
 
-void terminal_cursor_move_to_tab(int next=1);
+void terminal_cursor_move_to_tab(int next = 1);
 
 void terminal_scroll(int start, int end, int up);
 void terminal_scroll_line(int y, int start, int end, int direction_left = 0);
@@ -55,7 +61,7 @@ void param_temp_buffer_eat(char c);
 // This is all set by the terminal_setup based on current font and display size
 extern ScrollRegion scroll_region;
 extern Cursor current_cursor, saved_cursor;
-extern unsigned char terminal_tab_stops[80/8];
+extern unsigned char terminal_tab_stops[80 / 8];
 extern int char_height, char_width,
        terminal_width, terminal_height, display_height_offset, display_width_offset;
 // Just a maximum, scrolling is not implemented
