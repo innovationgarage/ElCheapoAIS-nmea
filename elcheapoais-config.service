@@ -1,10 +1,10 @@
 [Unit]
-Description=ElCheapoAIS notifier service
+Description=ElCheapoAIS parser service
 After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /usr/local/bin/elcheapoais-notifier.sh
+ExecStart=/bin/bash /usr/local/bin/elcheapoais-config.sh
 KillMode=process
 
 [Install]

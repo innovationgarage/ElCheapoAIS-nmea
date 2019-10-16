@@ -1,0 +1,20 @@
+{
+    "name": "no.innovationgarage.elcheapoais.config",
+
+    "configs": {
+        "/no/innovationgarage/elcheapoais/downsampler": {
+            "storagepath": "/etc/elcheapoais/downsampler.json",
+            "writable": true,
+            "persistable": true
+        },
+        "/no/innovationgarage/elcheapoais/receiver": {
+            "writable": true,
+            "persistable": false
+        },
+        "/no/innovationgarage/elcheapoais/install": {
+            "storagepath": "/etc/elcheapoais/install.json",
+            "writable": false,
+            "persistable": false
+        }
+    }
+}

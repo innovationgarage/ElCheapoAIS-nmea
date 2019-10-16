@@ -1,10 +1,10 @@
 [Unit]
-Description=ElCheapoAIS receiver service
+Description=ElCheapoAIS parser service
 After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /usr/local/bin/elcheapoais-receiver.sh
+ExecStart=/bin/bash /usr/local/bin/elcheapoais-parser.sh
 KillMode=process
 
 [Install]

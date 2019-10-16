@@ -1,0 +1,6 @@
+{
+    "no.innovationgarage.elcheapoais.downsampler": {
+        "max_message_per_sec": 100.0,
+        "max_message_per_mmsi_per_sec": 10.0
+    }
+}
