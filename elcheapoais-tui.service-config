@@ -1,0 +1,4 @@
+[Service]
+Type=simple
+ExecStart=
+ExecStart=/bin/bash /usr/local/bin/elcheapoais-tui.sh

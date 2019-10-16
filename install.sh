@@ -67,6 +67,9 @@ for component in ${components}; do
     cp elcheapoais-${component}.service /lib/systemd/system/elcheapoais-${component}.service
 done
 
+mkdir -p /etc/systemd/system/serial-getty@.service.d
+cp elcheapoais-tui.service-config /etc/systemd/system/serial-getty@.service.d/20-autologin.conf
+
 systemctl daemon-reload
 
 for component in ${components}; do
@@ -85,14 +88,9 @@ done
         cp crontab /etc/cron.d/manhole
 )
 
+
+
 # Some generic system config
-# - autologin on serial console
 # - Forbid password login over ssh
-mkdir -p /etc/systemd/system/serial-getty@.service.d
-cat > /etc/systemd/system/serial-getty@.service.d/20-autologin.conf <<EOF
-[Service]
-ExecStart=
-ExecStart=-/sbin/agetty --autologin root --noclear %I $TERM
-EOF
 
 sed -i -e "s+#\? *PasswordAuthentication *yes+PasswordAuthentication no+g" /etc/ssh/sshd_config
