@@ -6,7 +6,7 @@ argparse() {
        if [ "${_ARG##--*}" == "" ]; then
            _ARG="${_ARG#--}"
            if [ "${_ARG%%*=*}" == "" ]; then
-               _ARGNAME="$(echo ${_ARG%=*} | tr -_ )"
+               _ARGNAME="$(echo ${_ARG%=*} | tr - _ )"
                eval "export ARG_${_ARGNAME}"='"${_ARG#*=}"'
            else
                eval "export ARG_${_ARG}"='True'
@@ -35,7 +35,9 @@ fi
 # General dependencies
 echo Installing dependencies
 
-apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash
+apt update
+
+apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash libdbus-1-dev libglib2.0-dev
 
 mkdir -p /var/log/elcheapoais
 mkdir -p /usr/local/bin
@@ -48,7 +50,7 @@ python3 -m pip install click-datetime
 python3 -m pip install dbus-python
 python3 -m pip install PyGObject
 
-components=config parser downsampler TUI
+components="config parser downsampler TUI"
 
 for component in ${components}; do
 (
@@ -82,8 +84,8 @@ done
         git clone --branch $ARG_branch https://github.com/innovationgarage/ElCheapoAIS-manhole.git
         cd ElCheapoAIS-manhole
 
-        cp manhole.sh elcheapoais-manhole-signal-status.py /usr/local/bin/manhole.sh
-        chmod ugo+x /usr/local/bin/manhole.sh /usr/local/bin/elcheapoais-manhole-signal-status.py
+        cp manhole.sh elcheapoais-manhole-signal-status.py /usr/local/bin
+        chmod ugo+x /usr/local/bin/{manhole.sh,elcheapoais-manhole-signal-status.py}
 
         cp crontab /etc/cron.d/manhole
 )
