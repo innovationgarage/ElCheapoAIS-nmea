@@ -50,6 +50,7 @@ python3 -m pip install click-datetime
 python3 -m pip install dbus-python
 python3 -m pip install PyGObject
 
+
 components="config parser downsampler TUI"
 
 for component in ${components}; do
@@ -71,6 +72,8 @@ done
 
 mkdir -p /etc/systemd/system/serial-getty@.service.d
 cp elcheapoais-tui.service-config /etc/systemd/system/serial-getty@.service.d/20-autologin.conf
+
+cp no.innovationgarage.elcheapoais.conf /etc/dbus-1/system.d/
 
 systemctl daemon-reload
 
