@@ -3,7 +3,7 @@
 
     "configs": {
         "/no/innovationgarage/elcheapoais/downsampler": {
-            "storagepath": "/etc/elcheapoais/downsampler.json",
+            "storagepath": "/etc/elcheapoais/config/downsampler.json",
             "writable": true,
             "persistable": true
         },
@@ -12,7 +12,7 @@
             "persistable": false
         },
         "/no/innovationgarage/elcheapoais/install": {
-            "storagepath": "/etc/elcheapoais/install.json",
+            "storagepath": "/etc/elcheapoais/config/install.json",
             "writable": false,
             "persistable": false
         }
