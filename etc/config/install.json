@@ -18,5 +18,8 @@
                 {"handler": "destination", "type": "connect", "address": "tcp:elcheapoais.innovationgarage.tech:1024"}
             ]
         }
+    },
+    "no.innovationgarage.elcheapoais.manhole": {
+        "url": "http://elcheapoais.innovationgarage.tech:1026/manhole"
     }
 }
