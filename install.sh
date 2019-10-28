@@ -87,8 +87,8 @@ done
         git clone --branch $ARG_branch https://github.com/innovationgarage/ElCheapoAIS-manhole.git
         cd ElCheapoAIS-manhole
 
-        cp manhole.sh elcheapoais-manhole-signal-status.py /usr/local/bin
-        chmod ugo+x /usr/local/bin/{manhole.sh,elcheapoais-manhole-signal-status.py}
+        cp manhole.sh elcheapoais-manhole-dbus /usr/local/bin
+        chmod ugo+x /usr/local/bin/{manhole.sh,elcheapoais-manhole-dbus}
 
         cp crontab /etc/cron.d/manhole
 )
