@@ -4,7 +4,8 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /usr/local/bin/elcheapoais-parser.sh
+Environment="PYTHONUNBUFFERED=True"
+ExecStart=/usr/bin/env elcheapoais-parser
 KillMode=process
 
 [Install]

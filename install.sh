@@ -65,8 +65,6 @@ done
 
 for component in ${components}; do
     echo "Configuring ${component}..."
-    cp elcheapoais-${component}.sh /usr/local/bin/elcheapoais-${component}.sh
-    chmod a+x /usr/local/bin/elcheapoais-${component}.sh
     cp elcheapoais-${component}.service /lib/systemd/system/elcheapoais-${component}.service
 done
 

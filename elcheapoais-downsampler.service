@@ -4,7 +4,8 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /usr/local/bin/elcheapoais-downsampler.sh
+Environment="PYTHONUNBUFFERED=True"
+ExecStart=/usr/bin/env elcheapoais-downsampler
 KillMode=process
 
 [Install]

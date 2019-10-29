@@ -4,7 +4,9 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /usr/local/bin/elcheapoais-config.sh
+Environment="PYTHONUNBUFFERED=True";5A;5A
+ExecStart=/usr/bin/env elcheapoais-config
+
 KillMode=process
 
 [Install]
