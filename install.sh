@@ -100,6 +100,9 @@ done
 sed -i -e "s+#\? *PasswordAuthentication *yes+PasswordAuthentication no+g" /etc/ssh/sshd_config
 
 # Throttle the CPU so we don't overheat
+# Throttling: https://forum.armbian.com/topic/9255-orangepi-pc-cpu-frequency/?tab=comments#comment-69278
+# Measure temperature: https://forum.armbian.com/topic/3779-orangepi-zero-high-temperature/
 sed -i -e "s+MAX_SPEED=.*+MAX_SPEED=480000+g" /etc/default/cpufrequtils
 
+# https://docs.armbian.com/User-Guide_Advanced-Features/#how-to-freeze-your-filesystem
 [ "$ARG_no_readonly" ] || echo 'overlayroot="tmpfs"' >> /etc/overlayroot.conf
