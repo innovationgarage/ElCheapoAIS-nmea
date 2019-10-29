@@ -1,10 +1,11 @@
 [Unit]
-Description=ElCheapoAIS parser service
+Description=ElCheapoAIS config service
 After=multi-user.target
 
 [Service]
 Type=simple
-Environment="PYTHONUNBUFFERED=True";5A;5A
+Environment="PYTHONUNBUFFERED=True"
+Restart=always
 ExecStart=/usr/bin/env elcheapoais-config
 
 KillMode=process
