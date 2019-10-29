@@ -1,5 +1,6 @@
 [Service]
 Type=simple
-Environment="PYTHONUNBUFFERED=True TTGOTERM=/dev/%I"
+Environment="PYTHONUNBUFFERED=True"
+Environment="TTGOTERM=/dev/%I"
 ExecStart=
 ExecStart=/usr/bin/env elcheapoais-tui
