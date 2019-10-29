@@ -27,6 +27,7 @@ Usage: install.sh OPTIONS
   Where options are any of
 
     --branch=${ARG_branch}
+    --no-readonly
 EOF
     exit 1
 fi
@@ -37,7 +38,7 @@ echo Installing dependencies
 
 apt update
 
-apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash libdbus-1-dev libglib2.0-dev
+apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash libdbus-1-dev libglib2.0-dev watchdog overlayroot
 
 mkdir -p /var/log/elcheapoais
 mkdir -p /usr/local/bin
@@ -97,3 +98,8 @@ done
 # - Forbid password login over ssh
 
 sed -i -e "s+#\? *PasswordAuthentication *yes+PasswordAuthentication no+g" /etc/ssh/sshd_config
+
+# Throttle the CPU so we don't overheat
+sed -i -e "s+MAX_SPEED=.*+MAX_SPEED=480000+g" /etc/default/cpufrequtils
+
+[ "$ARG_no_readonly" ] || echo 'overlayroot="tmpfs"' >> /etc/overlayroot.conf
