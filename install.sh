@@ -38,6 +38,7 @@ echo Installing dependencies
 
 apt update
 
+# Watchdog: https://forum.armbian.com/topic/2898-how-to-install-enable-and-start-watchdog-in-h3/
 apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash libdbus-1-dev libglib2.0-dev watchdog overlayroot
 
 mkdir -p /var/log/elcheapoais
