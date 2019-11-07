@@ -30,9 +30,11 @@ You need to open outgoing tcp traffic to the ports 1026 and 1024 to elcheapoais.
 * Boot an OrangePi using this USB with the serial port connected to a PC.
 * Log in, then clone and install this repo:
 
+
+    ```
     git checkout --branch dbus-0.1 git@github.com:innovationgarage/ElCheapoAIS-nmea.git
     cd ElCheapoAIS-nmea
-    ./install.sh --branch=dbus-0.1
+    ./install.sh --branch=dbus-0.1```
     
 Note that you do not need to make a full image of the USB stick when making copies for the copy to boot - it is enough to copy the files to a new filesystem (on a lone partition), as long as you update rootfs in /boot/armbianEnv.txt to point to /dev/sda.
 
