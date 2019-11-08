@@ -32,7 +32,7 @@ You need to open outgoing tcp traffic to the ports 1026 and 1024 to elcheapoais.
 
 
     ```
-    git clone --branch dbus-0.1 git@github.com:innovationgarage/ElCheapoAIS-nmea.git
+    git clone --branch dbus-0.1 https://github.com/innovationgarage/ElCheapoAIS-nmea.git
     cd ElCheapoAIS-nmea
     ./install.sh --branch=dbus-0.1
     ```
