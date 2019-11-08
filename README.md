@@ -34,7 +34,7 @@ You need to open outgoing tcp traffic to the ports 1026 and 1024 to elcheapoais.
     ```
     git clone --branch dbus-0.1 https://github.com/innovationgarage/ElCheapoAIS-nmea.git
     cd ElCheapoAIS-nmea
-    ./install.sh --branch=dbus-0.1
+    bash ./install.sh --branch=dbus-0.1
     ```
     
 Note that you do not need to make a full image of the USB stick when making copies for the copy to boot - it is enough to copy the files to a new filesystem (on a lone partition), as long as you update rootfs in /boot/armbianEnv.txt to point to /dev/sda.
