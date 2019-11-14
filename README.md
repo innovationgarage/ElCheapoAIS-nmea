@@ -24,6 +24,18 @@ You need to open outgoing tcp traffic to the ports 1026 and 1024 to elcheapoais.
   * Lowest of a total of 100 messages / sec or 10 messages / sec / mmsi.
 
 # Production documentation
+
+## Hardware
+
+* Base board: [OrangePI Zero](https://www.aliexpress.com/item/32915378874.html)
+* Screen: [TTGO OLED ESP8622 SH1106](https://www.aliexpress.com/item/32991442463.html?spm=a2g0s.9042311.0.0.27424c4d5SbjHq)
+  * Running [TTyGO](https://innovationgarage.github.io/TTyGO/)
+  * Connected to UART0 RX, TX and GND,+5V
+* NMEA dongle: [RS485/422 usb dongle](https://www.aliexpress.com/item/32888122294.html)
+  * Connected to internal USB port
+* USB flash memory
+  * Connected to external USB port (note: one of the internal ones does NOT work in u-boot!)
+
 ## Generating a USB software image
 
 * Download the latest Armbian image and write it to a USB memory using dd.
