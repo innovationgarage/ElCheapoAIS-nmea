@@ -37,7 +37,7 @@ echo Installing dependencies
 
 apt update
 
-apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash libdbus-1-dev libglib2.0-dev
+apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash libdbus-1-dev libglib2.0-dev libcairo2-dev
 
 mkdir -p /var/log/elcheapoais
 mkdir -p /usr/local/bin
@@ -48,6 +48,7 @@ cp -r ./etc /etc/elcheapoais
 # setuptools fails to install these properly as dependencies, so install them manually
 python3 -m pip install click-datetime
 python3 -m pip install dbus-python
+python3 -m pip install pycairo
 python3 -m pip install PyGObject
 
 components="config parser downsampler TUI"
