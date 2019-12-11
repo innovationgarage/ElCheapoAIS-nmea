@@ -27,6 +27,7 @@ Usage: install.sh OPTIONS
   Where options are any of
 
     --branch=${ARG_branch}
+    --no-readonly
 EOF
     exit 1
 fi
@@ -37,7 +38,8 @@ echo Installing dependencies
 
 apt update
 
-apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash libdbus-1-dev libglib2.0-dev libcairo2-dev
+# Watchdog: https://forum.armbian.com/topic/2898-how-to-install-enable-and-start-watchdog-in-h3/
+apt install -y python3 python3-pip python3-setuptools python3-dev git gcc openssh-server openssh-client bash libdbus-1-dev libglib2.0-dev libcairo2-dev watchdog overlayroot
 
 mkdir -p /var/log/elcheapoais
 mkdir -p /usr/local/bin
@@ -50,6 +52,7 @@ python3 -m pip install click-datetime
 python3 -m pip install dbus-python
 python3 -m pip install pycairo
 python3 -m pip install PyGObject
+
 
 components="config parser downsampler TUI"
 
@@ -65,13 +68,13 @@ done
 
 for component in ${components}; do
     echo "Configuring ${component}..."
-    cp elcheapoais-${component}.sh /usr/local/bin/elcheapoais-${component}.sh
-    chmod a+x /usr/local/bin/elcheapoais-${component}.sh
     cp elcheapoais-${component}.service /lib/systemd/system/elcheapoais-${component}.service
 done
 
 mkdir -p /etc/systemd/system/serial-getty@.service.d
 cp elcheapoais-tui.service-config /etc/systemd/system/serial-getty@.service.d/20-autologin.conf
+
+cp no.innovationgarage.elcheapoais.conf /etc/dbus-1/system.d/
 
 systemctl daemon-reload
 
@@ -85,8 +88,8 @@ done
         git clone --branch $ARG_branch https://github.com/innovationgarage/ElCheapoAIS-manhole.git
         cd ElCheapoAIS-manhole
 
-        cp manhole.sh elcheapoais-manhole-signal-status.py /usr/local/bin
-        chmod ugo+x /usr/local/bin/{manhole.sh,elcheapoais-manhole-signal-status.py}
+        cp manhole.sh elcheapoais-manhole-dbus /usr/local/bin
+        chmod ugo+x /usr/local/bin/{manhole.sh,elcheapoais-manhole-dbus}
 
         cp crontab /etc/cron.d/manhole
 )
@@ -97,3 +100,11 @@ done
 # - Forbid password login over ssh
 
 sed -i -e "s+#\? *PasswordAuthentication *yes+PasswordAuthentication no+g" /etc/ssh/sshd_config
+
+# Throttle the CPU so we don't overheat
+# Throttling: https://forum.armbian.com/topic/9255-orangepi-pc-cpu-frequency/?tab=comments#comment-69278
+# Measure temperature: https://forum.armbian.com/topic/3779-orangepi-zero-high-temperature/
+sed -i -e "s+MAX_SPEED=.*+MAX_SPEED=480000+g" /etc/default/cpufrequtils
+
+# https://docs.armbian.com/User-Guide_Advanced-Features/#how-to-freeze-your-filesystem
+[ "$ARG_no_readonly" ] || echo 'overlayroot="tmpfs"' >> /etc/overlayroot.conf
